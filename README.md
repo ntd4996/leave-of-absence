@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hệ thống Quản lý Nghỉ phép
 
-## Getting Started
+Hệ thống quản lý nghỉ phép được xây dựng bằng Next.js, TypeScript, TailwindCSS và Prisma.
 
-First, run the development server:
+## Tính năng
 
+- Xác thực người dùng (đăng nhập, đăng xuất)
+- Phân quyền người dùng (Admin, User)
+- Quản lý yêu cầu nghỉ phép
+- Xem lịch nghỉ phép
+- Thống kê nghỉ phép
+- Quản lý người dùng (Admin)
+
+## Cài đặt
+
+1. Clone dự án:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/leave-of-absence.git
+cd leave-of-absence
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Cài đặt dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Tạo file `.env` từ `.env.example`:
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Cập nhật các biến môi trường trong file `.env`
 
-## Learn More
+5. Tạo cơ sở dữ liệu:
+```bash
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Chạy dự án:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Cấu trúc dự án
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+leave-of-absence/
+├── app/
+│   ├── (admin)/
+│   │   └── admin/
+│   │       └── users/
+│   │           └── new/
+│   │               └── page.tsx
+│   ├── (auth)/
+│   │   └── login/
+│   │       └── page.tsx
+│   ├── (dashboard)/
+│   │   └── dashboard/
+│   │       └── page.tsx
+│   └── api/
+│       ├── auth/
+│       │   ├── [...nextauth]/
+│       │   │   └── route.ts
+│       │   ├── change-password/
+│       │   │   └── route.ts
+│       │   ├── forgot-password/
+│       │   │   └── route.ts
+│       │   ├── register/
+│       │   │   └── route.ts
+│       │   └── signout/
+│       │       └── route.ts
+│       ├── leaves/
+│       │   ├── [id]/
+│       │   │   ├── route.ts
+│       │   │   └── status/
+│       │   │       └── route.ts
+│       │   ├── all/
+│       │   │   └── route.ts
+│       │   ├── route.ts
+│       │   ├── stats/
+│       │   │   └── route.ts
+│       │   └── week/
+│       │       └── route.ts
+│       ├── me/
+│       │   └── route.ts
+│       └── users/
+│           ├── [id]/
+│           │   └── route.ts
+│           └── route.ts
+├── components/
+│   └── ui/
+│       ├── button.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── select.tsx
+│       ├── toast.tsx
+│       ├── toaster.tsx
+│       └── use-toast.ts
+├── lib/
+│   ├── auth.ts
+│   ├── date.ts
+│   ├── prisma.ts
+│   ├── string.ts
+│   └── utils.ts
+├── prisma/
+│   └── schema.prisma
+├── types/
+│   └── next-auth.d.ts
+├── .env
+├── .env.example
+├── .gitignore
+├── middleware.ts
+├── package.json
+└── README.md
+```
 
-## Deploy on Vercel
+## Công nghệ sử dụng
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Prisma](https://www.prisma.io/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tác giả
+
+- [Your Name](https://github.com/your-username)
+
+## Giấy phép
+
+MIT

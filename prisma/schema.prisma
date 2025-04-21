@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  name           String
+  email          String   @unique
+  password       String
+  role           Role     @default(USER)
+  remainingDays  Int      @default(12)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  approvedLeaves Leave[]  @relation("ApprovedBy")
+  leaves         Leave[]
+}
+
+model Leave {
+  id           String      @id @default(cuid())
+  startDate    DateTime
+  endDate      DateTime
+  reason       String
+  status       LeaveStatus @default(PENDING)
+  cancelReason String?
+  rejectReason String?
+  userId       String
+  approverId   String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  relatedUsers String[]
+  approvedBy   User?       @relation("ApprovedBy", fields: [approverId], references: [id])
+  user         User        @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELED
+}

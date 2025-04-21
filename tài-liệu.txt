@@ -1,0 +1,11 @@
+Tôi muốn tạo 1 project xin nghỉ phép người dùng có thể xin nghỉ vào các ngày trong tuần tứ thứ 2 đến thứ 6, giờ làm việc từ 8h sáng đến 17h chiều. nội dung xin nghỉ là có input từ ngày nào giờ nào đến ngày nào giờ nào,
+có input điền lý do xin nghỉ, có input điền các thông tin đồng bộ có input select các người liên quan.
+có trang dashboard hiển thị cho thành viên đang đăng nhập hiển thị 
+Tổng Số Giờ Xin Nghỉ Tháng Trước
+Tổng Số Giờ Xin Nghỉ Tháng Này
+Tổng Số Lần Xin Nghỉ Tháng Này
+có phần hiển thị từng ngày đã xin nghỉ
+* có trang hiển thị lịch sử xin nghỉ
+* có trang hiển thị calendar, calendar hiển thị các ngày trong tuần hiện tại, các thành viên xin nghỉ sẽ được hiển thị  lên để người dùng vào trang sẽ biết ngày nào có thành viên xin nghỉ và nghỉ đến bao giờ
+* có trang quản lý cho admin, admin có thể lịch xin nghỉ của nhân viên
+- trong trang quản lý có phần tạo user và password cho người dùng, tài khoản mặc định của admin là `admin` password là `admin`, trong trang tạo user có thể set quyền cho user. user có thể đăng nhập qua tài khoản tạo không đăng nhập qua provider nào khác.
